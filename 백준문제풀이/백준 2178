@@ -1,0 +1,63 @@
+#include<iostream>
+#include<string>
+#include<tuple>
+#include<queue>
+using namespace std;
+
+int** graph;
+int x[4] = { -1,1,0,0 };  // 상하좌우
+int y[4] = { 0,0,-1,1 };  // 상하좌우
+int** visited;
+
+int BFS(int n, int m) {
+	queue<pair<int, int>>q;
+	q.push({ 0,0 });
+	visited[0][0] = 1;
+
+	while (!q.empty()) {
+		int i = q.front().first;  // 0 <= i < n
+		int j = q.front().second;  // 0 <= j < m
+		q.pop();
+
+		for (int k = 0; k < 4; k++)
+		{
+			int checki = i + x[k];
+			int checkj = j + y[k];
+			if (checki < 0 || checki >= n || checkj < 0 || checkj > m)
+				continue;
+			if (graph[checki][checkj] == 0)
+				continue;
+			if (visited[checki][checkj] != 0)
+				continue;
+			visited[checki][checkj] = visited[i][j] + 1;
+			q.push({ checki,checkj });
+		}
+	}
+	return visited[n - 1][m - 1];
+}
+
+int main() {
+	int n, m;
+
+	cin >> n >> m;
+	graph = new int* [n];
+	visited = new int* [n];
+
+	for (int i = 0; i < n; i++) {
+		graph[i] = new int[m];
+		visited[i] = new int[m];
+		string num;  cin >> num;
+		for (int j = 0; j < m; j++) {
+			graph[i][j] = num[j] - '0';
+			visited[i][j] = 0;
+		}
+	}
+	cout << BFS(n, m) << endl;
+	for (int i = 0; i < n; i++) {
+		delete[]graph[i];
+		delete[]visited[i];
+	}
+	delete[]graph;
+	delete[]visited;
+	return 0;
+}
