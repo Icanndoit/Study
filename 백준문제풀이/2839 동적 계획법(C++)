@@ -1,0 +1,33 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+	int n;
+
+	cin >> n;
+	vector<int>dp(n + 1);
+
+	dp[3] = 1;
+	dp[4] = dp[0] = dp[2] = dp[1] = -1;
+	dp[5] = 1;
+	// 6 : 6-3-0
+	// 7 : 7-2- -1, 7-4- -1
+	// 8 : 8-5-0, 8-3-0
+	// 9 : 9-6-3-0
+	// 10 : 10-5-0
+	// 11 : 11-6-3-0, 11-8-5-0
+	// 12 : 12-9-6-3-0
+	// 13 : 13-8-5-0, 13-8-3-0
+	for (int i = 6; i <= n; i++) {
+		if (dp[i - 5] != -1)
+			dp[i] = dp[i - 5] + 1;
+		else if (dp[i - 3] != -1)
+			dp[i] = dp[i - 3] + 1;
+		else
+			dp[i] = -1;
+	}
+	cout << dp[n] << endl;
+
+	return 0;
+}
