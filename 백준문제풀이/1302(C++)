@@ -1,0 +1,29 @@
+#include<iostream>
+#include<string>
+#include<map>
+using namespace std;
+
+int main() {
+	int n, maximum = -1;
+	cin >> n;
+
+	map<string, int>hash;
+	for (int i = 0; i < n; i++) {
+		string book;  cin >> book;
+		if (hash.count(book) == 0)
+			hash[book] = 1;
+		else
+			hash[book] += 1;
+		if (hash[book] > maximum)
+			maximum = hash[book];
+	}
+	for (auto i : hash) {
+		if (i.second == maximum) {
+			cout << i.first;
+			break;
+		}
+	}
+	
+
+	return 0;
+}

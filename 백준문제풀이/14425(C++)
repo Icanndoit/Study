@@ -1,0 +1,22 @@
+#include<iostream>
+#include<string>
+#include<map>
+using namespace std;
+
+int main() {
+	int n, m, out = 0;
+	map<string, bool>hash;
+
+	cin >> n >> m;
+	for (int i = 0; i < n; i++) {
+		string str;  cin >> str;
+		hash[str] = true;
+	}
+	for (int i = 0; i < m; i++) {
+		string str;  cin >> str;
+		if (hash[str] == true)
+			out++;
+	}cout << out << endl;
+
+	return 0;
+}
