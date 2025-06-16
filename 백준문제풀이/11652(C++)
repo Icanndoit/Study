@@ -1,0 +1,24 @@
+#include<iostream>
+#include<map>
+using namespace std;
+
+int main() {
+	map<long long, int>hash;
+	int n;
+
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		long long data;  cin >> data;
+		if (hash.count(data) == 0)
+			hash[data] = 1;
+		else
+			hash[data] += 1;
+	}
+	auto maxit = hash.begin();
+	for (auto it = hash.begin(); it != hash.end(); it++) {
+		if (it->second > maxit->second)
+			maxit = it;
+	}cout << maxit->first << endl;
+
+	return 0;
+}
