@@ -1,0 +1,28 @@
+#include<iostream>
+#include<string>
+#include<map>
+using namespace std;
+
+int main() {
+	int n;
+	map<string, int>hash;
+
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		string name;   cin >> name;
+		if (hash.count(name) == 0)
+			hash[name] = 1;
+		else
+			hash[name] += 1;
+	}
+	for (int i = 0; i < n - 1; i++) {
+		string name;  cin >> name;
+		hash[name] -= 1;
+		if (hash[name] == 0)
+			hash.erase(name);
+	}
+	for (auto it : hash)
+		cout << it.first << endl;
+
+	return 0;
+}
