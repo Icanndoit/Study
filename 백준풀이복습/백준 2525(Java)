@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        int hour = input.nextInt();  // 시간
+        int minute = input.nextInt();  // 분
+        int plus = input.nextInt();
+
+        minute += plus;
+        if (minute >= 60) {
+            hour += (minute / 60);
+            minute -= (minute / 60) * 60;
+        }
+        if (hour >= 24)
+            hour -= 24;
+        System.out.println(hour + " " + minute);
+    }
+}
