@@ -1,0 +1,14 @@
+def maximum(value):
+    i = len(value) - 1
+    out = max_price = 0
+    while i != -1:
+        if value[i] > max_price:
+            max_price = value[i]
+        else:
+            out += (max_price - value[i])
+        i -= 1
+    return out
+
+for i in range(int(input())):
+    date = int(input())
+    print(maximum(list(map(int, input().split()))))
