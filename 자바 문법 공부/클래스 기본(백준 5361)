@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Main {
+    public static class Price {
+        double blaster;  // 블래스터 라이플 가격
+        double visual_sensor;  // 시각 센서 가격
+        double auditory_sensor;  // 청각 센서 가격
+        double arm;  // 팔 가격
+        double leg;  // 다리 가격
+    }
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        Price con = new Price();
+        int n = input.nextInt();
+
+        con.blaster = 350.34;
+        con.visual_sensor = 230.90;
+        con.auditory_sensor = 190.55;
+        con.arm = 125.30;
+        con.leg = 180.90;
+
+        for(int i = 0; i < n; i++) {
+            double total = 0.0;  // 모든 부품을 구매하는데 필요한 가격
+            int a, b, c, d, e;
+            a = input.nextInt();  total += (a * con.blaster);
+            b = input.nextInt();  total += (b * con.visual_sensor);
+            c = input.nextInt();  total += (c * con.auditory_sensor);
+            d = input.nextInt();  total += (d * con.arm);
+            e = input.nextInt();  total += (e * con.leg);
+            System.out.printf("$%.2f\n", total);  // 소수점 둘째 자리까지 출력
+        }
+    }
+}
