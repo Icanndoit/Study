@@ -1,0 +1,17 @@
+package Practice;
+
+public class Information {
+    String name;  // 이름
+    int age;  // 나이
+    double height;  // 키
+    double weight;  // 몸무게
+    String blood;  // 혈액형
+
+    void ShowInformation() {  // 정보 출력 함수
+        System.out.println("이름 : " + name);
+        System.out.println("나이 : " + age + "살");
+        System.out.printf("키 : %.1fcm\n", height);
+        System.out.printf("몸무게 : %.1fkg\n", weight);
+        System.out.println("혈액형 : " + blood + "형");
+    }
+}
