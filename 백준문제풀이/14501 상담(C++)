@@ -1,0 +1,32 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int maximum(int* dp, int** date, int n) {
+	int out = 0;
+	for (int i = 1; i <= n; i++) {
+		int end = i + date[i][0] - 1;
+		if (end <= n) {
+			dp[end] = max(dp[end], dp[i - 1] + date[i][1]);
+			out = max(out, dp[end]);
+		}
+		dp[i] = max(dp[i], dp[i - 1]);
+	}
+	return out;
+}
+
+int main() {
+	int* dp, ** date, n;
+
+	cin >> n;
+	dp = new int[n + 1]();
+	date = new int* [n + 1];
+	
+	for (int i = 1; i <= n; i++) {
+		date[i] = new int[2];
+		cin >> date[i][0] >> date[i][1];
+	}
+	cout << maximum(dp, date, n) << endl;
+	
+	return 0;
+}
