@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+
+int** graph, out = -1;
+bool* DFSvisited;
+void DFS(int v, int n) {
+	DFSvisited[v] = true;
+	out++;
+
+	for (int i = 1; i <= n; i++) {
+		if (graph[v][i] == 0 || DFSvisited[i] == true)
+			continue;
+		DFS(i, n);
+	}
+}
+
+int main() {
+	int n;
+	cin >> n;
+
+	graph = new int* [n + 1];
+	DFSvisited = new bool[n + 1];
+	for (int i = 0; i <= n; i++) {
+		DFSvisited[i] = false;
+	}
+	for (int i = 0; i <= n; i++) {
+		graph[i] = new int[n + 1];
+		for (int j = 0; j <= n; j++)
+			graph[i][j] = 0;
+	}
+
+	int connet;  cin >> connet;
+	for (int i = 0; i < connet; i++) {
+		int a, b;
+		cin >> a >> b;
+		if (a != b)
+			graph[a][b] = graph[b][a] = 1;
+	}
+	DFS(1, n);
+	cout << out << endl;
+
+	for (int i = 0; i <= n; i++)
+		delete[]graph[i];
+
+	delete[]graph;
+	delete[]DFSvisited;
+	return 0;
+}
