@@ -1,0 +1,54 @@
+#include<iostream>
+using namespace std;
+
+// 다익스트라 알고리즘 함수
+void Dijkstra(char* point, int weighted[][5], int* dist, int end) {
+	for (int i = 0; i <= end; i++)
+	{
+		for (int j = 0; j < 5; j++) {
+			if (i == j)  // 인접행렬에서 대각선 성분은 반드시 0으로 채워진다.
+				continue;
+			if (weighted[i][j] != 99999)  // 점 i에서 점 j로 가는 경로가 있을경우
+				dist[j] = min(dist[j], dist[i] + weighted[i][j]);
+		}
+	}
+}
+
+// 집합에 정점이 추가될때마다 정점 A에서 각 정점까지의 거리를 보여주는 함수
+void distance(int* dist, int end) {
+	if (end == 0)
+		cout << "집합 : {A} : [ ";
+	else if (end == 1)
+		cout << "집합 : {A, B} : [ ";
+	else if (end == 2)
+		cout << "집합 : {A, B, C} : [ ";
+	else if (end == 3)
+		cout << "집합 : {A, B, C, D} : [ ";
+	else if (end == 4)
+		cout << "집합 : {A, B, C, D, E} : [ ";
+	for (int i = 0; i < 5; i++) {
+		if (i != 4)
+			cout << dist[i] << ", ";
+		else
+			cout << dist[i] << " ]\n\n";
+	}
+}
+
+int main() {
+	// 정점 A, B, C, D, E
+	char point[] = { 'A', 'B', 'C', 'D', 'E' };
+	int weighted[5][5] = {  // 그래프에서의 가중치 인접행렬
+		{0, 10, 3, 99999, 99999},
+		{99999, 0, 4, 7, 99999},
+		{99999, 5, 0, 9, 7},
+		{99999, 99999, 99999, 0, 1},
+		{99999, 99999, 99999, 1, 0}
+	};
+	int dist[] = { 0, 99999, 99999, 99999, 99999 };  // 정점 A에서 각 정점까지의 최단거리
+	for (int i = 0; i < 5; i++) {
+		Dijkstra(point, weighted, dist, i);
+		distance(dist, i);
+	}
+
+	return 0;
+}
