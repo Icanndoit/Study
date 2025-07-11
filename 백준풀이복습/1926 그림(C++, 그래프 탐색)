@@ -1,0 +1,72 @@
+#include<iostream>
+#include<queue>
+#include<tuple>
+using namespace std;
+
+int out = 0, maximum = 0;
+int n, m;  // n행 m열
+int** graph;
+bool** visited;
+
+void BFS(int startx, int starty) {
+	int movx[] = { -1,1,0,0 };  // 상하좌우
+	int movy[] = { 0,0,-1,1 };  // 상하좌우
+	int area = 0;  // 탐색하는 영역의 넓이
+	queue<pair<int, int>>q;
+
+	q.push({ startx,starty });
+	visited[startx][starty] = true;
+	area++;
+	out++;
+	while (!q.empty()) {
+		int x = q.front().first;
+		int y = q.front().second;
+		q.pop();
+
+		for (int i = 0; i < 4; i++) {
+			int newx = x + movx[i];
+			int newy = y + movy[i];
+			if (newx < 0 || newx >= n || newy < 0 || newy >= m)
+				continue;
+			if (graph[newx][newy] == 0 || visited[newx][newy] == true)
+				continue;
+			q.push({ newx,newy });
+			visited[newx][newy] = true;
+			area++;
+		}
+	}
+
+	if (area >= maximum)
+		maximum = area;
+}
+
+int main() {
+	cin >> n >> m;
+	graph = new int* [n];
+	visited = new bool* [n];
+
+	for (int i = 0; i < n; i++) {
+		graph[i] = new int[m]();
+		visited[i] = new bool[m];
+		for (int j = 0; j < m; j++) {
+			cin >> graph[i][j];
+			visited[i][j] = false;
+		}
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++)
+		{
+			if (graph[i][j] == 1 && visited[i][j] == false)
+				BFS(i, j);
+		}
+	}
+
+	cout << out << endl << maximum << endl;
+	for (int i = 0; i < n; i++) {
+		delete[] graph[i];
+		delete[] visited[i];
+	}
+	delete[] graph;
+	delete[] visited;
+	return 0;
+}
