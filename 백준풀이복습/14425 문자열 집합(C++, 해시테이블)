@@ -1,0 +1,23 @@
+#include<iostream>
+#include<map>
+#include<string>
+using namespace std;
+
+int main() {
+	int n, m, out = 0;
+	map<string, int>hash;
+
+	cin >> n >> m;
+	for (int i = 0; i < n; i++) {
+		string str;  cin >> str;
+		hash[str] = 0;
+	}
+	for (int i = 0; i < m; i++) {
+		string str;  cin >> str;
+		if (hash.count(str))  // 입력받은 문자열이 해시테이블 안에 존재할 경우 if문 수행
+			out++;
+	}
+	cout << out << endl;
+
+	return 0;
+}
