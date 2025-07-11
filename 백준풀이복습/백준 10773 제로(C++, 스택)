@@ -1,0 +1,26 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+
+int main() {
+	stack<int>Stack;
+	int n, sum = 0;
+
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		int num;  cin >> num;
+		if (num == 0 && !Stack.empty())
+			Stack.pop();
+		else
+			Stack.push(num);
+	}
+	if (!Stack.empty()) {
+		while (!Stack.empty())
+		{
+			sum += Stack.top();
+			Stack.pop();
+		}
+	}cout << sum << endl;
+
+	return 0;
+}
