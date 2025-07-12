@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	int n, ** arr;
+	cin >> n;
+
+	arr = new int* [n];
+	for (int i = 0; i < n; i++) {
+		arr[i] = new int[2];
+		cin >> arr[i][0] >> arr[i][1];
+	}
+	for (int i = 0; i < n; i++) {
+		int grade = 1;
+		for (int j = 0; j < n; j++) {
+			if (i == j)
+				continue;
+			if (arr[i][0] < arr[j][0] && arr[i][1] < arr[j][1])
+				grade += 1;
+		}
+		cout << grade << " ";
+	}
+	for (int i = 0; i < n; i++)
+		delete[] arr[i];
+
+	delete[] arr;
+	return 0;
+}
