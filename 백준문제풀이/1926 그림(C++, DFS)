@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+
+int width = 0, maximum = 0;
+int picture[500][500] = { 0 };
+bool visited[500][500] = { false };
+
+void DFS(int x, int y) {
+	int dx[] = { -1,1,0,0 };  // 상하좌우
+	int dy[] = { 0,0,-1,1 };  // 상하좌우
+	visited[x][y] = true;
+	width++;
+
+	for (int i = 0; i < 4; i++) {
+		int newx = x + dx[i];
+		int newy = y + dy[i];
+		if (newx >= 500 || newx < 0 || newy >= 500 || newy < 0)
+			continue;
+		if (picture[newx][newy] == 0 || visited[newx][newy] == true)
+			continue;
+		DFS(newx, newy);
+	}
+	if (width > maximum)
+		maximum = width;
+}
+
+int main() {
+	int n, m, out = 0;
+
+	cin >> n >> m;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++)
+			cin >> picture[i][j];
+	}
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (picture[i][j] == 0 || visited[i][j] == true)
+				continue;
+			DFS(i, j);
+			out++;
+			width = 0;
+		}
+	}
+	cout << out << endl << maximum << endl;
+
+	return 0;
+}
