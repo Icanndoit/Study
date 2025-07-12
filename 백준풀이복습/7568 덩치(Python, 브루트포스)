@@ -1,0 +1,15 @@
+n = int(input())
+lst = []
+
+for _ in range(n):
+    x, y = map(int, input().split())
+    lst.append((x, y))
+
+for i in range(n):
+    rank = 1
+    for j in range(n):
+        if i == j:
+            continue
+        if lst[i][0] < lst[j][0] and lst[i][1] < lst[j][1]:
+            rank += 1
+    print(rank, end=" ")
