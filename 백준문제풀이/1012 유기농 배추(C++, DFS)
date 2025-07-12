@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+
+int out;
+void DFS(int x, int y, int ground[50][50], bool visited[50][50]) {
+	visited[x][y] = true;
+
+	int dx[] = { -1,1,0,0 };  // 상하좌우
+	int dy[] = { 0,0,-1,1 };  // 상하좌우
+	for (int i = 0; i < 4; i++) {
+		int newx = x + dx[i];
+		int newy = y + dy[i];
+		if (newx >= 50 || newx < 0 || newy >= 50 || newy < 0)
+			continue;
+		if (ground[newx][newy] == 0 || visited[newx][newy] == true)
+			continue;
+		DFS(newx, newy, ground, visited);
+	}
+}
+
+int main() {
+	int Case;
+	cin >> Case;
+
+	for (int i = 0; i < Case; i++) {
+		int ground[50][50] = { 0 };
+		bool visited[50][50] = { false };
+		int m, n, k;  // 가로의 길이, 세로의 길이, 배추가 심어지는 개수
+		cin >> m >> n >> k;
+		int row, column;  // 행, 열
+		for (int j = 0; j < k; j++) {
+			// 열, 행 순으로 입력
+			cin >> column >> row;
+			ground[row][column] = 1;
+		} out = 0;
+		for (int x = 0; x < n; x++) {
+			for (int y = 0; y < m; y++)
+			{
+				if (ground[x][y] == 0 || visited[x][y] == true)
+					continue;
+				DFS(x, y, ground, visited);
+				out++;
+			}
+		}
+		cout << out << endl;
+	}
+
+	return 0;
+}
