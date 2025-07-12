@@ -1,0 +1,23 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	bool visited[101][101] = { false };
+	int width = 0, n;
+
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		int x, y;  cin >> x >> y;
+		for (int movy = y; movy < y + 10; movy++) {
+			for (int movx = x; movx < x + 10; movx++) {
+				if (visited[movx][movy] == false)
+				{
+					visited[movx][movy] = true;
+					width++;
+				}
+			}
+		}
+	} cout << width << endl;
+
+	return 0;
+}
