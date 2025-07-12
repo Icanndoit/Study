@@ -1,0 +1,19 @@
+n = int(input())
+lst = list(map(int, input().split()))
+lst.sort()
+
+m = int(input())
+value = list(map(int, input().split()))
+
+for key in value:
+    low, high, out = 0, n - 1, 0
+    while low <= high:
+        mid = (low + high) // 2
+        if key == lst[mid]:
+            out = 1
+            break
+        elif key < lst[mid]:
+            high = mid - 1
+        else:
+            low = mid + 1
+    print(out)
