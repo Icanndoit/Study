@@ -1,0 +1,16 @@
+n, out = int(input()), 0
+lst = [*map(int, input().split())]
+hap = int(input())
+
+lst.sort()
+start, end = 0, len(lst) - 1
+
+while start < end:
+    if lst[start] + lst[end] > hap:
+        end -= 1
+    elif lst[start] + lst[end] < hap:
+        start += 1
+    else:
+        out += 1
+        end -= 1
+print(out)
