@@ -1,0 +1,38 @@
+import sys
+sys.setrecursionlimit(10**6)  # 최대 재귀 깊이 변경
+
+def DFS(num, x, y):
+    global visited  # 함수 내부에서 외부의 변수값을 바꾸려면 global 필요
+    dx = [-1, 1, 0, 0]  # 상하좌우
+    dy = [0, 0, -1, 1]  # 상하좌우
+    visited[x][y] = True
+    for i in range(4):
+        newx = x + dx[i]
+        newy = y + dy[i]
+        if newx < 0 or newx >= n or newy < 0 or newy >= n:
+            continue
+        if visited[newx][newy] == True:
+            continue
+        if graph[newx][newy] <= num:
+            continue
+        DFS(num, newx, newy)
+
+locked, maximum = 0, 0
+
+n, graph = int(input()), []
+
+for i in range(n):
+    graph.append(tuple(map(int, input().split())))
+
+for num in range(0, max(map(max, graph)) + 1, 1):  # 0부터 그래프 내부의 최대값까지
+    visited = [[False] * n for _ in range(n)]
+    locked = 0
+    for x in range(n):
+        for y in range(n):
+            if graph[x][y] <= num or visited[x][y] == True:
+                continue
+            DFS(num, x, y)
+            locked += 1
+    if locked > maximum:
+        maximum = locked
+print(maximum)
