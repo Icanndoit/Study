@@ -1,0 +1,19 @@
+count, dp = 0, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+n = int(input())
+i, end = 10, 10 ** n
+
+while i <= end:
+    number, nam = i, -1
+    while number != 0:
+        if number % 10 <= nam:
+            nam = number % 10
+            number = number // 10
+        else:
+            nam = -1
+            break
+    if nam == -1:
+        dp.append(dp[i - 1])
+    else:
+        dp.append(dp[i - 1] + 1)
+
+print(dp[(10 ** n) - 1] % 10007)
