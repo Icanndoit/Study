@@ -18,7 +18,6 @@ def DFS(num, x, y):
         DFS(num, newx, newy)
 
 locked, maximum = 0, 0
-
 n, graph = int(input()), []
 
 for i in range(n):
