@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+
+int** graph, width;
+bool** visited;
+
+void DFS(int x, int y, int w, int h) {
+	int dx[] = { -1, 1, 0, 0, -1,-1,1, 1 };  // 상하좌우, 대각선상하
+	int dy[] = { 0,0,-1,1,-1,1,-1,1 };
+	visited[x][y] = true;
+
+	for (int i = 0; i < 8; i++) {
+		int newx = x + dx[i];
+		int newy = y + dy[i];
+		if (newx < 0 || newx >= h || newy < 0 || newy >= w)
+			continue;
+		if (graph[newx][newy] == 1 && visited[newx][newy] == false)
+			DFS(newx, newy, w, h);
+	}
+}
+
+int main() {
+	while (true) {
+		int w, h;
+		cin >> w >> h;
+		if (w == 0 && h == 0)
+			break;
+		graph = new int* [h];
+		visited = new bool* [h];
+		for (int i = 0; i < h; i++) {
+			graph[i] = new int[w];
+			visited[i] = new bool[w];
+			for (int j = 0; j < w; j++) {
+				cin >> graph[i][j];
+				visited[i][j] = false;
+			}
+		}
+		width = 0;
+		for (int i = 0; i < h; i++) {
+			for (int j = 0; j < w; j++) {
+				if (graph[i][j] == 1 && visited[i][j] == false) {
+					DFS(i, j, w, h);
+					width++;
+				}
+			}
+		}
+		cout << width << endl;
+
+		for (int i = 0; i < h; i++)
+			delete[] graph[i];
+
+		delete[] graph;
+	}
+	return 0;
+}
