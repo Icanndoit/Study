@@ -12,7 +12,7 @@ def BFS(x, y):
             newx, newy = mx + dx[i], my + dy[i]
             if newx >= m or newx < 0 or newy >= n or newy < 0:
                 continue
-            if graph[newx][newy] == 0 or visited[newx][newy] != 0:
+            if graph[newx][newy] == 0 or visited[newx][newy] == True:
                 continue
             queue.append((newx, newy))
             visited[newx][newy] = True
