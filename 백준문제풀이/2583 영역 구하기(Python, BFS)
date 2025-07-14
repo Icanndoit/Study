@@ -1,0 +1,42 @@
+def BFS(x, y):
+    global visited
+    queue, visited[x][y] = [(x, y)], True
+    dx = [-1, 1, 0, 0]  # 상하좌우
+    dy = [0, 0, -1, 1]  # 상하좌우
+    area = 1
+    
+    while len(queue) != 0:
+        mx, my = queue[0][0], queue[0][1]
+        del queue[0]
+        for i in range(4):
+            newx, newy = mx + dx[i], my + dy[i]
+            if newx >= m or newx < 0 or newy >= n or newy < 0:
+                continue
+            if graph[newx][newy] == 0 or visited[newx][newy] != 0:
+                continue
+            queue.append((newx, newy))
+            visited[newx][newy] = True
+            area += 1
+    return area
+            
+m, n, k = map(int, input().split())
+graph = [[1] * n for _ in range(m)]  # m행 n열
+visited = [[False] * n for _ in range(m)]  # m행 n열
+result = []
+
+for _ in range(k):
+    x1, y1, x2, y2 = map(int, input().split())
+    for y in range(y1, y2):      # 세로 범위
+        for x in range(x1, x2):   # 가로 범위
+            graph[y][x] = 0
+graph.reverse()
+
+for i in range(m):
+    for j in range(n):
+        if graph[i][j] == 1 and visited[i][j] == False:
+            result.append(BFS(i, j))
+
+print(len(result))
+result.sort()
+for i in range(len(result)):
+    print(result[i], end=" ")
