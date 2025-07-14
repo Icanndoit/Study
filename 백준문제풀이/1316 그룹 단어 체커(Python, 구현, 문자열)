@@ -1,0 +1,15 @@
+count = 0
+
+for _ in range(int(input())):
+    word, check = input(), []
+    for i in range(len(word)):
+        if word[i] not in check:
+            check.append(word[i])
+        else:
+            if word[i - 1] != word[i]:
+                check.clear()
+                break
+    if len(check) != 0:
+        count += 1
+
+print(count)
