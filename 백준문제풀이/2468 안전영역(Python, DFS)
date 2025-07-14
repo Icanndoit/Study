@@ -1,5 +1,5 @@
 import sys
-sys.setrecursionlimit(10**6)  # 최대 재귀 깊이 변경
+sys.setrecursionlimit(10 ** 6)  # 최대 재귀 깊이 변경
 
 def DFS(num, x, y):
     global visited  # 함수 내부에서 외부의 변수값을 바꾸려면 global 필요
