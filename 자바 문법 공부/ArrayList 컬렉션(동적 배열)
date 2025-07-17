@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        ArrayList<Integer> arr = new ArrayList<>();  // 동적 배열
+        ArrayList<Integer> arr = new ArrayList<>();  
 
         arr.add(10);
         arr.add(20);
