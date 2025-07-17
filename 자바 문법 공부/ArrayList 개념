@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        ArrayList<Integer> arr = new ArrayList<>();
+
+        arr.add(10);
+        arr.add(20);
+        System.out.println(arr);
+
+        arr.add(1, 15);
+        System.out.println(arr);
+        arr.remove(1);
+        System.out.println(arr);
+        System.out.println(arr.get(0) + ", " + arr.size());
+        arr.clear();
+        System.out.println(arr);
+
+    }
+}
