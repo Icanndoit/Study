@@ -1,0 +1,80 @@
+#include<iostream>
+#include<queue>
+#include<tuple>
+using namespace std;
+
+int date = -1, ** box, n, m;
+bool** visited;
+
+int check() {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (box[i][j] == 0)
+				return -1;
+		}
+	}
+	return date;
+}
+
+void BFS(int x, int y) {
+	queue<pair<int, int>>q;
+	q.push({ x,y });
+	visited[x][y] = true;
+
+	int dx[] = { -1,1,0,0 };   // 상하좌우
+	int dy[] = { 0,0,-1,1 };   // 상하좌우
+	while (!q.empty()) {
+		int newx = q.front().first;
+		int newy = q.front().second;
+		q.pop();
+		date++;
+
+		for (int i = 0; i < 4; i++) {
+			int mx = newx + dx[i];
+			int my = newy + dy[i];
+			
+			if (mx < 0 || my < 0 || mx >= n || my >= m)
+				continue;
+			if (box[mx][my] == -1)
+				continue;
+			if (visited[mx][my] == true)
+				continue;
+			q.push({ mx,my });
+			visited[mx][my] = true;
+			box[mx][my] = 1;
+		}
+	}
+}
+
+int main() {
+	cin >> m >> n;
+
+	box = new int* [n];
+	visited = new bool* [n];
+
+	for (int i = 0; i < n; i++) {
+		box[i] = new int[m]();
+		visited[i] = new bool[m]();
+		for (int j = 0; j < m; j++) {
+			cin >> box[i][j];
+			visited[i][j] = false;
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++)
+		{
+			if (box[i][j] == 1 && visited[i][j] == false)
+				BFS(i, j);
+		}
+	}
+
+	cout << check() << endl;
+	for (int i = 0; i < n; i++) {
+		delete[] box[i];
+		delete[] visited[i];
+	}
+	delete[] box;
+	delete[] visited;
+	return 0;
+}
