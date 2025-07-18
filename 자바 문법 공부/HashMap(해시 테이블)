@@ -1,0 +1,36 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        HashMap<String, Integer> hash = new HashMap<>();
+        // A ~ Z : 65 ~ 90, a ~ z : 97 ~ 122
+
+        System.out.println("해시 테이블 크기 : " + hash.size());
+        hash.put("A", 65);  hash.put("Z", 90);
+        hash.put("a", 97);  hash.put("z", 122);
+        System.out.println(hash + " " + "해시 테이블 크기 : " + hash.size() + "\n");
+
+        if (hash.containsKey("A"))
+            System.out.println("해시는 A키를 가지고 있습니다.");
+        if (hash.containsKey("B") == false)
+            System.out.println("해시는 B키를 가지고 있지 않습니다.");
+        if (hash.containsValue(65))
+            System.out.println("해시는 value 65에 해당하는 키를 가지고 있습니다.");
+        if (!hash.containsValue(100))
+            System.out.println("해시는 value 100에 해당하는 키를 가지고 있지 않습니다.");
+
+        hash.clear();
+        System.out.println("\n" + hash);
+        System.out.println(hash.size() + ", " + hash.isEmpty() + "\n");
+
+        hash.put("B", 66);
+        System.out.println(hash);
+
+        hash.remove("B");
+        System.out.println(hash);
+        
+    }
+}
