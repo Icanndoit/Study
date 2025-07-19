@@ -1,0 +1,87 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int dx[] = { -1,1,0,0 };  // 상화좌우
+int dy[] = { 0,0,-1,1 };  // 상화좌우
+
+void DFS1(char** picture, bool** visited, int n, int x, int y) {
+	char color = picture[x][y];
+	visited[x][y] = true;
+
+	for (int i = 0; i < 4; i++) {
+		int newx = x + dx[i];
+		int newy = y + dy[i];
+		if (newx < 0 || newy < 0 || newx >= n || newy >= n)
+			continue;
+		if (color == picture[newx][newy] && visited[newx][newy] == false)
+			DFS1(picture, visited, n, newx, newy);
+	}
+}
+
+void DFS2(char** picture, bool** visited, int n, int x, int y) {
+	char color = picture[x][y];
+	visited[x][y] = true;
+
+	for (int i = 0; i < 4; i++) {
+		int newx = x + dx[i];
+		int newy = y + dy[i];
+		if (newx < 0 || newy < 0 || newx >= n || newy >= n)
+			continue;
+		if (color == 'B') {
+			if (picture[newx][newy] == 'B' && visited[newx][newy] == false)
+				DFS2(picture, visited, n, newx, newy);
+		}
+		else {
+			if (picture[newx][newy] != 'B' && visited[newx][newy] == false)
+				DFS2(picture, visited, n, newx, newy);
+		}
+	}
+}
+
+int main() {
+	int n, cnt1 = 0, cnt2 = 0;  // 1은 적록색약이 아닌사람, 2는 적록색약인 사람
+	char** picture;
+	bool** visited1, ** visited2;  // 1은 적록색약이 아닌사람, 2는 적록색약인 사람
+
+	cin >> n;
+	picture = new char* [n];
+	visited1 = new bool* [n];
+	visited2 = new bool* [n];
+
+	for (int i = 0; i < n; i++) {
+		picture[i] = new char[n];
+		visited1[i] = new bool[n];
+		visited2[i] = new bool[n];
+		string str;  cin >> str;
+		for (int j = 0; j < n; j++) {
+			picture[i][j] = str[j];
+			visited1[i][j] = visited2[i][j] = false;
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (visited1[i][j] == false) {
+				DFS1(picture, visited1, n, i, j);
+				cnt1++;
+			}
+			if (visited2[i][j] == false) {
+				DFS2(picture, visited2, n, i, j);
+				cnt2++;
+			}
+		}
+	}
+
+	cout << cnt1 << " " << cnt2 << endl;
+
+	for (int i = 0; i < n; i++) {
+		delete[] picture[i];
+		delete[] visited1[i];
+		delete[] visited2[i];
+	}
+	delete[] picture;
+	delete[] visited1;
+	delete[] visited2;
+	return 0;
+}
