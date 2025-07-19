@@ -1,0 +1,117 @@
+#include<iostream>
+#include<string>
+#include<queue>
+#include<tuple>
+using namespace std;
+
+int dx[] = { -1,1,0,0 };  // 상화좌우
+int dy[] = { 0,0,-1,1 };  // 상화좌우
+int cnt1 = 0, cnt2 = 0;  // 1은 적록색약이 아닌사람, 2는 적록색약인 사람
+
+void BFS1(char** picture, bool** visited, int n, int x, int y) {
+	queue<pair<int, int>>q;
+	visited[x][y] = true;
+	q.push({ x,y });
+
+	while (!q.empty()) {
+		int mx = q.front().first;
+		int my = q.front().second;
+		char color = picture[mx][my];
+		q.pop();
+
+		for (int i = 0; i < 4; i++) {
+			int newx = mx + dx[i];
+			int newy = my + dy[i];
+
+			if (newx >= n || newy >= n || newx < 0 || newy < 0)
+				continue;
+			if (color != picture[newx][newy])
+				continue;
+			if (visited[newx][newy] == true)
+				continue;
+			q.push({ newx,newy });
+			visited[newx][newy] = true;
+		}
+	}
+	cnt1++;
+}
+
+void BFS2(char** picture, bool** visited, int n, int x, int y) {
+	queue<pair<int, int>>q;
+	visited[x][y] = true;
+	char color = picture[x][y];
+	q.push({ x,y });
+
+	while (!q.empty()) {
+		int mx = q.front().first;
+		int my = q.front().second;
+		char color = picture[mx][my];
+		q.pop();
+
+		for (int i = 0; i < 4; i++) {
+			int newx = mx + dx[i];
+			int newy = my + dy[i];
+
+			if (newx >= n || newy >= n || newx < 0 || newy < 0)
+				continue;
+			if (visited[newx][newy] == true)
+				continue;
+			if (color == 'B') {
+				if (picture[newx][newy] == 'B' && visited[newx][newy] == false) {
+					visited[newx][newy] = true;
+					q.push({ newx,newy });
+				}
+			}
+			else {
+				if (picture[newx][newy] != 'B' && visited[newx][newy] == false) {
+					visited[newx][newy] = true;
+					q.push({ newx,newy });
+				}
+			}
+		}
+	}
+	cnt2++;
+}
+
+int main() {
+	int n;
+	char** picture;
+	bool** visited1, ** visited2;  // 1은 적록색약이 아닌사람, 2는 적록색약인 사람
+
+	cin >> n;
+	picture = new char* [n];
+	visited1 = new bool* [n];
+	visited2 = new bool* [n];
+
+	for (int i = 0; i < n; i++) {
+		picture[i] = new char[n];
+		visited1[i] = new bool[n];
+		visited2[i] = new bool[n];
+		string str;  cin >> str;
+		for (int j = 0; j < n; j++) {
+			picture[i][j] = str[j];
+			visited1[i][j] = visited2[i][j] = false;
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (visited1[i][j] == false)
+				BFS1(picture, visited1, n, i, j);
+			if (visited2[i][j] == false)
+				BFS2(picture, visited2, n, i, j);
+		}
+	}
+
+	cout << cnt1 << " " << cnt2 << endl;
+
+	for (int i = 0; i < n; i++) {
+		delete[] picture[i];
+		delete[] visited1[i];
+		delete[] visited2[i];
+	}
+	delete[] picture;
+	delete[] visited1;
+	delete[] visited2;
+	return 0;
+}
