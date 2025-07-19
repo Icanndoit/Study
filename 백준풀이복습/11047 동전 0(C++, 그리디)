@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	int* list, n, total, count = 0;
+	cin >> n >> total;
+
+	list = new int[n];
+
+	int i = 0;
+	for (i = 0; i < n; i++) {
+		int money;  cin >> money;
+		list[i] = money;
+	}
+
+	i = n - 1;
+	while (total != 0) {
+		if (list[i] > total)
+			i--;
+		else {
+			count += (total / list[i]);
+			total -= (total / list[i]) * list[i];
+		}
+	}
+	cout << count << endl;
+	delete[] list;
+	return 0;
+}
