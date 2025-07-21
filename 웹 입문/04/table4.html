@@ -1,0 +1,43 @@
+<!-- 열을 묶어 주는 <col>m <colgroup> 태그 -->
+
+<table>
+    <caption>선물용과 가정용 상품 구성</caption>
+    <colgroup>
+        <col style="background-color: aqua;">  <!--첫 번째 열의 배경색 지정-->
+        <col>  <!--스타일이 없어도 <col> 명시-->
+        <col style="width:100px;">  <!--세 번째, 네 번째 열의 너비 지정-->
+        <col style="width:30px;">
+    </colgroup>
+    <thead>
+        <tr>
+            <th>용도</th>
+            <th>중량</th>
+            <th>개수</th>
+            <th>가격</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="2">선물용</td>
+            <td>3kg</td>
+            <td>11 ~ 16과</td>
+            <td>35,000원</td>
+        </tr>
+        <tr>
+            <td>5kg</td>
+            <td>18 ~ 26과</td>
+            <td>52,000원</td>
+        </tr>
+        <tr>
+            <td rowspan="2">가정용</td>
+            <td>3kg</td>
+            <td>11 ~ 16과</td>
+            <td>30,000원</td>
+        </tr>
+        <tr>
+            <td>5kg</td>
+            <td>18 ~ 26과</td>
+            <td>47,000원</td>
+        </tr>
+    </tbody>
+</table>
