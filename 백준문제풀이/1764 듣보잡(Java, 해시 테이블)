@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        HashSet<String> Notlisten = new HashSet<>();
+        HashSet<String> Notsee = new HashSet<>();
+
+        int n = input.nextInt();
+        int m = input.nextInt();
+
+        for(int i = 0; i < n; i++) {
+            String name = input.next();
+            Notlisten.add(name);
+        }
+        for(int i = 0; i < m; i++) {
+            String name = input.next();
+            Notsee.add(name);
+        }
+        ArrayList<String> result = new ArrayList<>();
+
+        for(String name : Notsee) {
+            if(Notlisten.contains(name))
+                result.add(name);
+        }
+        Collections.sort(result);
+        System.out.println(result.size());
+        for(String name : result)
+            System.out.println(name);
+    }
+}
