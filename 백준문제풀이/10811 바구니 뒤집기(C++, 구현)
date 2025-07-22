@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	int n, * basket, m;
+	cin >> n >> m;
+
+	basket = new int[n + 1]();
+	for (int i = 1; i <= n; i++)
+		basket[i] = i;
+
+	for (int i = 0; i < m; i++) {
+		int a, b, k = 0;  cin >> a >> b;
+		int reversed[100];
+		for (int j = b; j >= a; j--) {
+			reversed[k] = basket[j];
+			k++;
+		}k = 0;
+		for (int j = a; j <= b; j++) {
+			basket[j] = reversed[k];
+			k++;
+		}
+	}
+	for (int i = 1; i <= n; i++)
+		cout << basket[i] << " ";
+
+	delete[] basket;
+	return 0;
+}
