@@ -1,0 +1,17 @@
+n, m = map(int, input().split())
+count, position = 0, 1
+end = position + m - 1
+
+for _ in range(int(input())):
+    fall = int(input())
+    if fall >= position and fall <= end:
+        continue
+    while (fall >= position and fall <= end) == False:
+        if position < fall:
+            position += 1
+            end += 1
+        elif position > fall:
+            position -= 1
+            end -= 1
+        count += 1
+print(count)
