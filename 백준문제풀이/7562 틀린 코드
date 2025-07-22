@@ -1,0 +1,61 @@
+#include<iostream>
+#include<tuple>
+#include<queue>
+using namespace std;
+
+bool** board, ** visited;
+
+int BFS(int size, int mx, int my, int destinationx, int destinationy) {
+	int dx[] = { -2,-1,1,2,-2,-1,1,2 };   // 왼쪽 상 ~ 오른쪽 상, 왼쪽 하 ~ 오른쪽 하
+	int dy[] = { -1,-2,-2,-1,1,2,2,1 };   // 왼쪽 상 ~ 오른쪽 상, 왼쪽 하 ~ 오른쪽 하
+	int count = 0;
+	queue<pair<int, int>>q;
+	q.push({ mx,my });
+
+	while (!q.empty()) {
+		int x = q.front().first;
+		int y = q.front().second;
+		q.pop();
+		if (x == destinationx && y == destinationy)
+			return count;
+
+		for (int i = 0; i < 8; i++) {
+			int newx = x + dx[i];
+			int newy = y + dy[i];
+
+			if (newx < 0 || newx >= size || newy < 0 || newy >= size)
+				continue;
+			if (visited[newx][newy] == true)
+				continue;
+			count++;
+			q.push({ newx,newy });
+			visited[newx][newy] = true;
+		}
+	}
+}
+
+int main() {
+	int n;
+	cin >> n;
+
+	for (int i = 0; i < n; i++) {
+		int size;  cin >> size;
+		board = new bool* [size];
+		visited = new bool* [size];
+		for (int j = 0; j < size; j++) {
+			board[j] = new bool[size]();    // 모든 요소 false로 초기화
+			visited[j] = new bool[size]();  // 모든 요소 false로 초기화
+		}
+		int mx, my;  cin >> mx >> my;  // 현재 나의 위치
+		int dx, dy;  cin >> dx >> dy;  // 목적지
+		cout << BFS(size, mx, my, dx, dy) << endl;
+		for (int k = 0; k < size; k++) {
+			delete[] board[k];
+			delete[] visited[k];
+		}
+		delete[] board;
+		delete[] visited;
+	}
+
+	return 0;
+}
