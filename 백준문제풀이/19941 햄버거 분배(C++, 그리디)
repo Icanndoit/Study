@@ -1,0 +1,46 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+/*  사람들은 자신앞에 햄버거가 존재하고, 해당 햄버거가 범위안에 있으면 그 햄버거를 먹는게 가장 효율적이다.
+	그러나 자신앞의 햄버거를 먹을수 없는경우, 어쩔 수 없이 자신의 뒤에있는 햄버거를 먹어햐한다.
+	자신뒤에 햄버거가 있어도 범위가 안되거나 혹은 자신뒤에 햄버거가 없다면 먹지 못한다. */
+
+int main() {
+	int n, k, count = 0;
+	cin >> n >> k;  // 사람 수, 범위
+
+	string str;
+	cin >> str;   // H : 햄버거, P : 사람
+
+	// 햄버거를 먹고나면 해당 부분을 H에서 E로 바꾼다
+	for (int i = 0; i < str.size(); i++) {
+		if (str[i] == 'P') {
+			int j = i - k;
+			bool change = false;
+			while (j != i) {
+				if (str[j] == 'H') {
+					str[j] = 'E';
+					count++;
+					change = true;
+					break;
+				}
+				j++;
+			}
+			if (change == false) {
+				int j = i + 1;
+				while (j != (i + k + 1)) {
+					if (str[j] == 'H') {
+						str[j] = 'E';
+						count++;
+						break;
+					}
+					j++;
+				}
+			}
+		}
+	}
+
+	cout << count << endl;
+	return 0;
+}
