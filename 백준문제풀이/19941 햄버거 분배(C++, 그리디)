@@ -28,7 +28,7 @@ int main() {
 				j++;
 			}
 			if (change == false) {
-				int j = i + 1;
+				j = i + 1;
 				while (j != (i + k + 1)) {
 					if (str[j] == 'H') {
 						str[j] = 'E';
