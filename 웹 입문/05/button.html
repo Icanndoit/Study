@@ -1,0 +1,27 @@
+<!--전송, 리셋 버튼을 나타내는 type="submit", type="reset"
+    submit : 폼에 입력한 정보를 서버로 전송한다.
+    reset : input 요소에 입력된 모든 정보를 재설정해서 사용자가 입력한
+            내용을 모두 지운다.
+-->
+
+<form>
+    <fieldset>
+        <legend>개인정보 입력</legend>
+    <p>
+        <label for="user-name">이름 </label>
+        <input type="text" id="user-name">
+    </p>
+    <p>
+        <label for="mail">이메일</label>
+        <input type="email" id="mail">
+    </p>
+    <p>
+        <label for="phone">전화번호</label>
+        <input type="tel" id="phone">
+    </p>
+    </fieldset>
+    <div>
+        <input type="submit" value="저장">
+        <input type="reset"  value="초기화">
+    </div>
+</form>
