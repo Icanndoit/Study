@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	int* line, * out, len;
+	cin >> len;
+
+	line = new int[len];
+	out = new int[len]();
+	for (int i = 0; i < len; i++)
+		cin >> line[i];
+	
+	for (int i = 0; i < len; i++) 
+	{
+		int height = i + 1;
+		int count = 0;
+		
+		for (int j = 0; j < len; j++) 
+		{
+			if (out[j] == 0) {
+				if (line[i] == count) {
+					out[j] = height;
+					break;
+				}
+				count++;
+			}
+		}
+	}
+
+	for (int i = 0; i < len; i++)
+		cout << out[i] << " ";
+
+	delete[] out;
+	delete[] line;
+	return 0;
+}
