@@ -1,0 +1,10 @@
+for i in range(int(input())):
+    grade = [*map(int, input().split())]
+    del grade[0]
+    grade.sort()
+    gap = -222
+    for j in range(1, len(grade)):
+        if grade[j] - grade[j - 1] > gap:
+            gap = grade[j] - grade[j - 1]
+    print("Class {}".format(i + 1))
+    print("Max {}, Min {}, Largest gap {}".format(max(grade), min(grade), gap))
