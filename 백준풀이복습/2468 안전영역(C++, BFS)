@@ -1,0 +1,79 @@
+#include<iostream>
+#include<queue>
+#include<tuple>
+using namespace std;
+
+void BFS(int** area, bool** isSafe, int n, int x, int y,int width) {
+	queue<pair<int, int>>q;
+	q.push({ x,y });
+	isSafe[x][y] = true;
+
+	int dx[] = { -1,1,0,0 };  // 상하좌우
+	int dy[] = { 0,0,-1,1 };  // 상하좌우
+	while (!q.empty()) 
+	{
+		int x = q.front().first;
+		int y = q.front().second;
+		q.pop();
+
+		for (int i = 0; i < 4; i++) 
+		{
+			int newx = x + dx[i], newy = y + dy[i];
+			if (newx < 0 || newx >= n || newy < 0 || newy >= n)
+				continue;
+			if (area[newx][newy] > width && isSafe[newx][newy] == false) {
+				isSafe[newx][newy] = true;
+				q.push({ newx,newy });
+			}
+		}
+	}
+}
+
+int main() {
+	int** area, n;
+	bool** isSafe;
+
+	cin >> n;
+	area = new int* [n];
+	isSafe = new bool* [n];
+
+	for (int i = 0; i < n; i++) {
+		area[i] = new int[n];
+		isSafe[i] = new bool[n];
+		for (int j = 0; j < n; j++)
+			cin >> area[i][j];
+	}
+
+	int maximum = 0, width = 0;
+	while (true) {
+		int out = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++)
+				isSafe[i][j] = false;
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++)
+			{
+				if (area[i][j] > width && isSafe[i][j] == false) {
+					BFS(area, isSafe, n, i, j, width);
+					out++;
+				}
+			}
+		}
+		if (out == 0 || width == 100)
+			break;
+		if (out > maximum)
+			maximum = out;
+		width++;
+	}
+
+	cout << maximum << endl;
+
+	for (int i = 0; i < n; i++) {
+		delete[] area[i];
+		delete[] isSafe[i];
+	}
+	delete[] area;
+	delete[] isSafe;
+	return 0;
+}
