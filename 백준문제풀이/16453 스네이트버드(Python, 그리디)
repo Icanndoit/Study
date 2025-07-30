@@ -1,0 +1,9 @@
+N, L = map(int, input().split())
+fruit = [*map(int, input().split())]
+fruit.sort()
+
+for i in fruit:
+    if L >= i:
+        L += 1
+
+print(L)
