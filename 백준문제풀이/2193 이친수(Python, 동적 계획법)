@@ -1,0 +1,10 @@
+n = int(input())
+dp = [0, 1, 1, 2, 3, 5]
+
+if n > 5:
+    i = 5
+    while i != n:
+        dp.append(dp[i] + dp[i - 1])
+        i += 1
+
+print(dp[n])
