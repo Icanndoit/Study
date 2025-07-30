@@ -1,0 +1,19 @@
+n, out = int(input()), 1
+
+for i in range(9, (10 ** n) + 1, 1):
+    end = i % 10
+    num = i // 10
+    while num != 0:
+        if end != 0 or end != 1:
+            break
+        else:
+            if end == 1 and num % 10 == 1:
+                break
+            elif end == 1 and num % 10 == 0:
+                end = 0
+            elif end == 0 and (num % 10 == 0 or num % 10 == 1):
+                end = num % 10
+            num //= 10
+        if num == 0 and end == 1:
+            out += 1
+print(out)
