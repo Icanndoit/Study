@@ -1,0 +1,25 @@
+import java.util.Scanner;
+import java.util.Arrays;  // 배열 정렬
+import java.util.Collections;
+
+public class Main {
+
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        int n;
+
+        n = input.nextInt();
+        Integer[] arr = new Integer[n];
+
+        for(int i = 0; i < n; i++)
+            arr[i] = input.nextInt();
+
+        Arrays.sort(arr, Collections.reverseOrder());
+        for(int i = 0; i < n; i++)
+            arr[i] = arr[i] + i + 1;
+
+        System.out.println(Collections.max(Arrays.asList(arr)) + 1);
+
+    }
+}
