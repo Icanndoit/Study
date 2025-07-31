@@ -1,0 +1,10 @@
+n = int(input())
+lst = [*map(int, input().split())]
+
+lst.sort()
+lst.reverse()
+
+for i in range(len(lst)):
+    lst[i] = lst[i] + i + 1
+
+print(max(lst) + 1)
