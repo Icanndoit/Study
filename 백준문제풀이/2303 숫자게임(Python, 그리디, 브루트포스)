@@ -1,0 +1,23 @@
+n = int(input())
+card = [[0] * 5 for _ in range(n)]
+
+for i in range(n):
+    new = ([*map(int, input().split())])
+    card[i] = tuple(new)
+
+person, result = 1, []
+
+for i in range(n):
+    maximum = 0
+    for j in range(5):
+        for k in range(j + 1, 5):
+            for l in range(k + 1, 5):
+                hap = card[i][j] + card[i][k] + card[i][l]
+                maximum = max(maximum, hap % 10)
+    result.append(maximum)
+
+for i in range(len(result)):
+    if result[i] == max(result):
+        person = i + 1
+
+print(person)
