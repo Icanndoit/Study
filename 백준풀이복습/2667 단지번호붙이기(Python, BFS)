@@ -1,0 +1,40 @@
+def BFS(x, y):
+    global visited, out
+    width, queue = 1, [(x, y)]
+    visited[x][y] = True
+    dx = [-1, 1, 0, 0]  # 상하좌우
+    dy = [0, 0, -1, 1]  # 상하좌우
+
+    while len(queue) != 0:
+        front, back = queue[0][0], queue[0][1]
+        del queue[0]
+
+        for i in range(4):
+            newx = front + dx[i]
+            newy = back + dy[i]
+            if newx < 0 or newx >= n or newy < 0 or newy >= n:
+                continue
+            if block[newx][newy] != 0 and visited[newx][newy] == False:
+                visited[newx][newy] = True
+                width += 1
+                queue.append((newx, newy))
+    out.append(width)
+
+n, out = int(input()), []
+block = [[0] * n for _ in range(n)]
+visited = [[False] * n for _ in range(n)]
+
+for i in range(n):
+    string = input()
+    for j in range(len(string)):
+        block[i][j] = int(string[j])
+
+for i in range(n):
+    for j in range(n):
+        if block[i][j] != 0 and visited[i][j] == False:
+            BFS(i, j)
+
+out.sort()
+print(len(out))
+for i in out:
+    print(i)
