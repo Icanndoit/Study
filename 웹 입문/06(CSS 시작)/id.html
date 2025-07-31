@@ -1,0 +1,30 @@
+<!-- 특정 부분에 스타일을 한 번만 적용할 수 있는 id 선택자 -->
+<!-- #아이디명 { 스타일 규칙 }-->
+
+<!-- 클래스 선택자는 문서에서 여러번 적용 가능하지만,
+     id 선택자는 문서에서 한 번만 적용 가능하다.
+-->
+
+<style>
+    #container {
+        width: 500px;  /* 너비 */
+        margin: 10px auto; /* 중앙 배치 */
+        padding: 10px; /* 테두리와 내용 사이 여백 */
+        border: 1px solid #000;  /* 테두리 굵기와 색깔 */
+    }
+</style>
+
+<div id="container">
+    <h1>id 선택자 사용하기</h1>
+    <p>HTML</p>
+    <p>CSS</p>
+    <p>JavaScript</p>
+</div>
+
+<div>
+    <br><br>
+    <h1>id 선택자 사용X</h1>
+    <p>HTML</p>
+    <p>CSS</p>
+    <p>JavaScript</p>
+</div>
