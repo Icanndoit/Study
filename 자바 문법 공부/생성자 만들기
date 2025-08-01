@@ -10,7 +10,7 @@ public class Main {
     {
         Scanner input = new Scanner(System.in);
         Constrcutor con = new Constrcutor();  // 생성자
-
+        // 프로그래머가 생성자를 직접 추가하면 디폴트 생성자는 만들어지지 않는다.
         
 
     }
