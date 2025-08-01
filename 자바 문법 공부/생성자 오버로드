@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+    public static class Constrcutor {
+        public Constrcutor() {
+            System.out.println("매개변수가 없는 생성자");
+        }
+        public Constrcutor(String str) {
+            System.out.println(str);
+        }
+    }
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+
+        Constrcutor con1 = new Constrcutor();
+        Constrcutor con2 = new Constrcutor("매개변수가 존재하는 생성자");
+        // 생성자 오버로드 : 클래스에 생성자가 2개 이상 제공되는 경우
+
+    }
+}
