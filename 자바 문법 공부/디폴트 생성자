@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+    public static class Constrcutor {
+        int a, b;
+    }
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        Constrcutor con = new Constrcutor();
+
+        System.out.println("디폴트 생성자는 클래스 안에 public 클래스명() {} 형태로 되어 있으며,\n" +
+                "자바 컴파일러가 자동으로 제공한다. 현재 코드에서도 마찬가지");
+
+    }
+}
