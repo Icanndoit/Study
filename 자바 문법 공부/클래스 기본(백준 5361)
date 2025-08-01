@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        Price con = new Price();
+        Price con = new Price();  // 인스턴스 생성
         int n = input.nextInt();
 
         con.blaster = 350.34;
