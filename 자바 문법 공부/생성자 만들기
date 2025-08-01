@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Main {
+    public static class Constrcutor {
+        public Constrcutor() {
+            System.out.println("Hello! Java!");
+        }
+    }
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        Constrcutor con = new Constrcutor();  // 생성자
+
+        
+
+    }
+}
