@@ -1,0 +1,8 @@
+a = 0
+
+while (true) {
+    if (a == 12)
+        break
+    console.log(a)
+    a += 2
+}
