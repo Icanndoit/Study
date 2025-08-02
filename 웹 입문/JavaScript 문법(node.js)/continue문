@@ -1,0 +1,5 @@
+for (i = 1; i <= 10; i++) {
+    if (i % 2 == 1)  // i가 홀수일 경우
+        continue
+    console.log(i)
+}
