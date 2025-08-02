@@ -1,0 +1,26 @@
+a = 1  // 숫자형(정수, 실수 포함)
+console.log(a, typeof(a))
+
+a = 20.5  // 숫자형(정수, 실수 포함)
+console.log(a, typeof(a))
+
+a = "JavaScript"  // 문자열
+console.log(a, typeof(a))
+
+a = true  // 논리값
+console.log(a, typeof(a))
+
+a = false  // 논리값
+console.log(a, typeof(a))
+
+a = null  // 값이 없음(비어 있음)
+console.log(a, typeof(a))  // typeof(null) → "object" (자바스크립트의 오래된 버그)
+
+a = undefined  // 값이 아직 정의되지 않음
+console.log(a, typeof(a))
+
+a = 1234567890123456789012345678901234567890n  // bigint(큰 정수처럼 n을 붙여 사용) (끝에 n 붙이기)
+console.log(a, typeof(a))
+
+a = Symbol("id")  // 고유한 심볼값
+console.log(a, typeof(a))
