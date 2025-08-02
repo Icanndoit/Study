@@ -1,0 +1,10 @@
+function func1() {
+    console.log("Hello!")
+}
+
+function func2() {
+    return "JavaScript!"
+}
+
+func1()
+console.log(func2())
