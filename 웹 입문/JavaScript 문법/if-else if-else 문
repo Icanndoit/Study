@@ -1,0 +1,10 @@
+a = 10
+
+if (typeof(a) == "string")
+    console.log("a의 자료형은 문자열입니다.")
+
+else if (typeof(a) == "number")
+    console.log("a의 자료형은 숫자형입니다.")
+
+else
+    console.log("a의 자료형은 문자열과 숫자형 둘다 아닙니다.")
