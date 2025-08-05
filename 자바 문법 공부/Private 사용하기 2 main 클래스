@@ -6,7 +6,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         PrivateTest con = new PrivateTest();
 
-        con.setage(40);
+        con.setage(40);  // setage 메서드를 활용해 private 변수에 접근 가능
         System.out.println("나이 : " + con.getage());
 
     }
