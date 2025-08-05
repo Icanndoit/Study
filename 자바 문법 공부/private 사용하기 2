@@ -1,0 +1,15 @@
+package Practice;
+
+public class PrivateTest {
+    String name;
+    char blood;
+    private int age;
+
+    public int getage() {  // private 변수인 age에 접근해 값을 가져오는 public get() 메서드
+        return age;
+    }
+
+    public void setage(int age) {  // private 변수인 age에 접근해 값을 지정하는 public set() 메서드
+        this.age = age;
+    }
+}
