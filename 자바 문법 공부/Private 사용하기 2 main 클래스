@@ -1,0 +1,13 @@
+package Practice;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        PrivateTest con = new PrivateTest();
+
+        con.setage(40);
+        System.out.println("나이 : " + con.getage());
+
+    }
+}
