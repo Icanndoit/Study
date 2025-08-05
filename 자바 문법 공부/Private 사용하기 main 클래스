@@ -1,0 +1,12 @@
+package Practice;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        PrivateTest con = new PrivateTest();
+
+        con.name = "james";
+        con.age = 40;  // 오류 발생
+    }
+}
