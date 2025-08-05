@@ -1,0 +1,7 @@
+package Practice;
+
+public class PrivateTest {
+    String name;
+    char blood;
+    private int age;
+}
