@@ -1,0 +1,24 @@
+class Person {
+    String name;
+    int age;
+
+    Person() {
+        this("이름 없음", 1);
+    }
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args)
+    {
+    
+        Person noNmae = new Person();
+        System.out.println(noNmae.name);
+        System.out.println(noNmae.age);
+
+    }
+}
