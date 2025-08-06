@@ -1,0 +1,14 @@
+guest, tip = [], 0
+
+for _ in range(int(input())):
+    guest.append(int(input()))
+
+guest.sort()
+guest.reverse()
+
+for i in range(len(guest)):
+    take = guest[i] - i  # (원래 주려고 생각했던 돈) - (받은 등수 - 1)
+    if take > 0:
+        tip += take
+
+print(tip)
