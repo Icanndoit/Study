@@ -1,0 +1,69 @@
+// 글자 '.' (점)은 빈 필드를 의미하며, 글자 '#'는 울타리를, 'o'는 양, 'v'는 늑대를 의미
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+int wolf = 0, sheep = 0, n, m;
+int totalwolf = 0, totalsheep = 0;
+bool** visited;
+char** land;
+
+void DFS(int x, int y) {
+	visited[x][y] = true;
+
+	if (land[x][y] == 'o') 
+		sheep++;
+	else if (land[x][y] == 'v') 
+		wolf++;
+
+	int dx[] = { -1,1,0,0 };
+	int dy[] = { 0,0,-1,1 };
+
+	for (int i = 0; i < 4; i++) {
+		int newx = x + dx[i];
+		int newy = y + dy[i];
+
+		if (newx < 0 || newx >= n || newy < 0 || newy >= m) 
+			continue;
+		if (visited[newx][newy]) 
+			continue;
+		if (land[newx][newy] == '#') 
+			continue;
+
+		DFS(newx, newy);
+	}
+}
+
+int main() {
+	cin >> n >> m;
+	land = new char* [n];
+	visited = new bool* [n];
+
+	for (int i = 0; i < n; i++) {
+		string input;  cin >> input;
+		land[i] = new char[m];
+		visited[i] = new bool[m];
+		for (int j = 0; j < m; j++) {
+			land[i][j] = input[j];
+			visited[i][j] = false;
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++)
+		{
+			if (!visited[i][j] && land[i][j] != '#') {
+				DFS(i, j);
+				if (sheep > wolf) 
+					totalsheep += sheep;
+				else 
+					totalwolf += wolf;
+				sheep = wolf = 0;
+			}
+		}
+	}
+
+	cout << totalsheep << " " << totalwolf << endl;
+	return 0;
+}
