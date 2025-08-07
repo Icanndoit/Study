@@ -1,0 +1,26 @@
+num = input()
+one, zero = num.count('1') // 2, num.count('0') // 2  # 삭제할 1, 0의 수
+
+delone, delzero = 0, 0  # 삭제한 개수
+
+# 문자열을 리스트로 변환 (문자열은 불변이라서 슬라이싱보다 리스트가 유리함)
+num = list(num)
+
+# 앞에서부터 1 삭제
+i = 0
+while delone != one and i < len(num):
+    if num[i] == '1':
+        num[i] = ''  # 삭제
+        delone += 1
+    i += 1
+
+# 뒤에서부터 0 삭제
+i = len(num) - 1
+while delzero != zero and i >= 0:
+    if num[i] == '0':
+        num[i] = ''  # 삭제
+        delzero += 1
+    i -= 1
+
+# 리스트를 문자열로 합쳐 출력
+print(''.join(num))
