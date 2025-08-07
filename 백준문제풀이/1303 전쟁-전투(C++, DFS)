@@ -1,0 +1,67 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int white = 0, black = 0, totalwhite = 0, totalblack = 0;
+int n, m;
+char** land;
+bool** visited;
+
+void DFS(int x, int y) {
+	visited[x][y] = true;
+	if (land[x][y] == 'W')
+		white += 1;
+	else
+		black += 1;
+
+	int dx[] = { -1,1,0,0 };  // 상하좌우
+	int dy[] = { 0,0,-1,1 };  // 상하좌우
+	
+	for (int i = 0; i < 4; i++) {
+		int newx = x + dx[i];
+		int newy = y + dy[i];
+
+		if (newx >= n || newx < 0 || newy >= m || newy < 0)
+			continue;
+		if (visited[newx][newy])
+			continue;
+		if (land[x][y] == land[newx][newy])
+			DFS(newx, newy);
+	}
+}
+
+int main() {
+	cin >> m >> n;
+	land = new char* [n];
+	visited = new bool* [n];
+
+	for (int i = 0; i < n; i++) {
+		land[i] = new char[m];
+		visited[i] = new bool[m];
+		string lan;  cin >> lan;
+		for (int j = 0; j < m; j++) {
+			land[i][j] = lan[j];
+			visited[i][j] = false;
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++)
+		{
+			if (!visited[i][j]) {
+				DFS(i, j);
+				totalwhite += (white * white);
+				totalblack += (black * black);
+				white = black = 0;
+			}
+		}
+	}cout << totalwhite << " " << totalblack << endl;
+	
+	for (int i = 0; i < n; i++) {
+		delete[] land[i];
+		delete[] visited[i];
+	}
+	delete[] land;
+	delete[] visited;
+	return 0;
+}
