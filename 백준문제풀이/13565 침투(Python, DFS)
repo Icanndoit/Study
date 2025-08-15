@@ -1,0 +1,34 @@
+import sys
+sys.setrecursionlimit(10 ** 6)
+
+def DFS(x, y):
+    global visited
+    visited[x][y] = True
+    dx, dy = (-1, 1, 0, 0), (0, 0, -1, 1)  # 상하좌우
+    for i in range(4):
+        newx = x + dx[i]
+        newy = y + dy[i]
+        if newx < 0 or newx >= n or newy < 0 or newy >= m:
+            continue
+        if laboratory[newx][newy] == 0 and visited[newx][newy] == False:
+            DFS(newx, newy)
+
+n, m = map(int, input().split())
+laboratory = []
+
+for i in range(n):
+    num, lst = input(), []
+    for j in range(len(num)):
+        lst.append(int(num[j]))
+    laboratory.append(lst)
+visited = [[False] * m for _ in range(n)]
+
+for j in range(m):
+    if laboratory[0][j] == 0 and not visited[0][j]:
+        DFS(0, j)
+
+if True in visited[n - 1]:
+    print("YES")
+
+else:
+    print("NO")
