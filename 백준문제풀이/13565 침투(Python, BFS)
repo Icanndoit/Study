@@ -1,0 +1,36 @@
+def BFS(x, y):
+    global visited
+    queue = [(x, y)]
+    dx, dy = (-1, 1, 0, 0), (0, 0, -1, 1)  # 상하좌우
+    visited[x][y] = True
+    
+    while len(queue) != 0:
+        front, back = queue[0][0], queue[0][1]
+        del queue[0]
+
+        for i in range(4):
+            newx, newy = front + dx[i], back + dy[i]
+            if newx >= 0 and newx < n and newy >= 0 and newy < m:
+                if laboratory[newx][newy] == 0 and not visited[newx][newy]:
+                    queue.append( (newx, newy) )
+                    visited[newx][newy] = True
+
+n, m = map(int, input().split())
+laboratory = []
+
+for i in range(n):
+    num, lst = input(), []
+    for j in range(len(num)):
+        lst.append(int(num[j]))
+    laboratory.append(lst)
+visited = [[False] * m for _ in range(n)]
+
+for j in range(m):
+    if laboratory[0][j] == 0 and not visited[0][j]:
+        BFS(0, j)
+
+if True in visited[n - 1]:
+    print("YES")
+
+else:
+    print("NO")
