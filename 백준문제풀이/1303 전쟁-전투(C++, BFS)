@@ -1,0 +1,87 @@
+#include<iostream>
+#include<string>
+#include<queue>
+#include<tuple>
+using namespace std;
+
+int totalwhite = 0, totalblack = 0, n, m;
+int white = 0, black = 0;
+char** land;
+bool** visited;
+
+void BFS(int x, int y) {
+	visited[x][y] = true;
+	queue<pair<int, int>>Queue;
+	Queue.push({ x,y });
+
+	if (land[x][y] == 'W')
+		white += 1;
+	else
+		black += 1;
+
+	int dx[] = { -1,1,0,0 };
+	int dy[] = { 0,0,-1,1 };
+
+	while (!Queue.empty()) {
+		int front = Queue.front().first;
+		int back = Queue.front().second;
+		Queue.pop();
+
+		for (int i = 0; i < 4; i++) {
+			int newx = dx[i] + front;
+			int newy = dy[i] + back;
+
+			if (0 <= newx && newx < n && 0 <= newy && newy < m)
+			{
+				if (!visited[newx][newy] && land[front][back] == land[newx][newy])
+				{
+					visited[newx][newy] = true;
+					Queue.push({ newx,newy });
+					if (land[newx][newy] == 'W')
+						white += 1;
+					else
+						black += 1;
+				}
+			}
+		}
+	}
+}
+
+int main() {
+	cin >> m >> n;
+
+	land = new char* [n];
+	visited = new bool* [n];
+
+	for (int i = 0; i < n; i++) {
+		land[i] = new char[m];
+		visited[i] = new bool[m];
+		string str;  cin >> str;
+		for (int j = 0; j < m; j++) {
+			land[i][j] = str[j];
+			visited[i][j] = false;
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++)
+		{
+			if (visited[i][j] == false) {
+				BFS(i, j);
+				totalwhite += (white * white);
+				totalblack += (black * black);
+				white = black = 0;
+			}
+		}
+	}
+
+	cout << totalwhite << " " << totalblack << endl;
+
+	for (int i = 0; i < n; i++) {
+		delete[] land[i];
+		delete[] visited[i];
+	}
+	delete[] land;
+	delete[] visited;
+	return 0;
+}
