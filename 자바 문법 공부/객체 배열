@@ -1,0 +1,35 @@
+class player {
+    private String name;
+    private int age;
+    private double weight, height;
+    void Information(String name, int age, double weight, double height) {
+        this.name = name;
+        this.age = age;
+        this.height = height;
+        this.weight = weight;
+        System.out.println("-- 선수 정보 --");
+        System.out.println("이름 : " + this.name);
+        System.out.println("나이 : " + this.age);
+        System.out.println("키 : " + this.height);
+        System.out.println("몸무게 : " + this.weight);
+        System.out.println();
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args)
+    {
+        player[] con = new player[3];  // 객체 배열 생성
+
+        con[0] = new player();  // 인스턴스 생성(생성 안할시 각 배열에는 "비어 있다"의 의미로 null이 저장됨)
+        con[1] = new player();
+        con[2] = new player();
+
+        con[0].Information("Lebron James", 40, 113.4, 204.5);
+        con[1].Information("Kevin Durant", 36, 109, 211);
+        con[2].Information("Stephen Curry", 37, 84, 188);
+
+
+    }
+}
