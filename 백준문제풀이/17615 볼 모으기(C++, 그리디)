@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n;
+    string balls;
+    cin >> n >> balls;
+
+    int red = 0, blue = 0;
+    for (char c : balls) {
+        if (c == 'R') red++;
+        else blue++;
+    }
+
+    // 경우 1: 왼쪽 끝에 R 모으기
+    int leftR = 0;
+    for (int i = 0; i < n; i++) {
+        if (balls[i] == 'R') leftR++;
+        else break;
+    }
+    int move1 = red - leftR;
+
+    // 경우 2: 왼쪽 끝에 B 모으기
+    int leftB = 0;
+    for (int i = 0; i < n; i++) {
+        if (balls[i] == 'B') leftB++;
+        else break;
+    }
+    int move2 = blue - leftB;
+
+    // 경우 3: 오른쪽 끝에 R 모으기
+    int rightR = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        if (balls[i] == 'R') rightR++;
+        else break;
+    }
+    int move3 = red - rightR;
+
+    // 경우 4: 오른쪽 끝에 B 모으기
+    int rightB = 0;
+    for (int i = n - 1; i >= 0; i--) {
+        if (balls[i] == 'B') rightB++;
+        else break;
+    }
+    int move4 = blue - rightB;
+
+    cout << min({move1, move2, move3, move4}) << "\n";
+    return 0;
+}
