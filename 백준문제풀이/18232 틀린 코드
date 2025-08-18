@@ -1,0 +1,31 @@
+n, m = map(int, input().split())
+visited = [False] * (n + 1)
+Teleport = [[False] * (n + 1) for _ in range(n + 1)]  # 정거장 정보
+
+s, e = map(int, input().split())
+visited[s] = True
+
+for _ in range(m):
+    x, y = map(int, input().split())
+    Teleport[x][y] = Teleport[y][x] = True
+
+time = 0
+mov = s  # 움직일 위치
+
+while not visited[e]:
+    dist = abs(mov - e)  # 거리의 절댓값
+    if mov - e > 0: 
+        mov -= 1
+    else:
+        mov += 1
+    for i in range(mov - 1, mov + 2):
+        if i == mov: 
+            continue
+        for j in range(i, n + 1):
+            if Teleport[i][j] == True and abs(i - j) < dist:
+                mov = j
+                dist = abs(i - j)
+    visited[mov] = True
+    time += 1
+
+print(time)
