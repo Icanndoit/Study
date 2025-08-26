@@ -1,0 +1,14 @@
+import java.util.Scanner
+
+fun main() {
+    val input = Scanner(System.`in`)
+    val end = input.nextInt()
+
+    // var은 값이 변경될수 있지만, val은 변경이 불가능하다.
+    var sum = 0; var i = 1
+    while (i <= end) {
+        sum += i;
+        i++;
+    }
+    print(sum)
+}
