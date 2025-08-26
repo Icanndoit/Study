@@ -1,0 +1,9 @@
+import java.util.Scanner
+
+fun main() {
+    val input = Scanner(System.`in`)
+    val number = input.nextInt()
+
+    for (i in 1..9 step 1)
+        println("$number * $i = ${number * i}")
+}
