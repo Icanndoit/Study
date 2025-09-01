@@ -1,0 +1,14 @@
+lst = []
+
+for _ in range(int(input())):
+    lst.append(int(input()))
+
+lst.sort(reverse=True)   # 내림차순 정렬
+hap = sum(lst)
+
+i = 2
+while i < len(lst):
+    hap -= lst[i]   # 3번째마다 빼기
+    i += 3
+
+print(hap)
