@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+class A {
+    double total = 0.0;
+    double alghrithm;
+    double AI1;
+    double AI_ProGramming;
+    double Database;
+    double AI2;
+    double Starting_Programming;
+}
+
+class B extends A {   // A클래스로부터 상속받은 클래스 B
+    B() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("AI 입문 성적 입력 : ");
+        AI1 = input.nextDouble();
+
+        System.out.print("인공지능소개 성적 입력 : ");
+        AI2 = input.nextDouble();
+
+        System.out.print("데이터베이스 성적 입력 : ");
+        Database = input.nextDouble();
+
+        System.out.print("알고리즘 성적 입력 : ");
+        alghrithm = input.nextDouble();
+
+        System.out.print("AI프로그래밍 성적 입력 : ");
+        AI_ProGramming = input.nextDouble();
+
+        System.out.print("프로그래밍 입문 성적 입력 : ");
+        Starting_Programming = input.nextDouble();
+
+        total = (AI1 + AI2 + AI_ProGramming + alghrithm + Database + Starting_Programming) / 6;
+    }
+
+    void gradeprint1() {
+        System.out.printf("이번학기 성적 : %.2f%n", total);
+    }
+    
+    void gradeprint2() {
+        System.out.println("AI 입문 : " + AI1);
+        System.out.println("인공지능소개 : " + AI2);
+        System.out.println("데이터베이스 : " + Database);
+        System.out.println("AI 프로그래밍 : " + AI_ProGramming);
+        System.out.println("프로그래밍 입문 : " + Starting_Programming);
+        System.out.println("알고리즘 : " + alghrithm);
+        System.out.printf("이번학기 성적 : %.2f%n", total);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args)
+    {
+        B con = new B();
+        con.gradeprint1();
+        System.out.println();
+        con.gradeprint2();
+
+    }
+}
