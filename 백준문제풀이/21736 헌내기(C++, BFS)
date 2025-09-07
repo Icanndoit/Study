@@ -1,0 +1,76 @@
+#include<iostream>
+#include<string>
+#include<tuple>
+#include<queue>
+using namespace std;
+
+char** school;
+bool** visited;
+int n, m, out = 0;
+
+void BFS(int x, int y) {
+	queue<pair<int, int>>Queue;
+	Queue.push({ x,y });
+	visited[x][y] = true;
+
+	while (!Queue.empty())
+	{
+		int front = Queue.front().first;
+		int back = Queue.front().second;
+		Queue.pop();
+
+		int dx[] = { -1,1,0,0 };  // 상하좌우
+		int dy[] = { 0,0,-1,1 };  // 상하좌우
+		for (int i = 0; i < 4; i++)
+		{
+			int newx = front + dx[i];
+			int newy = back + dy[i];
+
+			if (newx < 0 || newx >= n || newy < 0 || newy >= m)
+				continue;
+			if (visited[newx][newy] == false && school[newx][newy] != 'X') {
+				visited[newx][newy] = true;
+				if (school[newx][newy] == 'P')
+					out++;
+				Queue.push({ newx,newy });
+			}
+		}
+	}
+}
+
+int main() {
+	cin >> n >> m;
+	school = new char* [n];
+	visited = new bool* [n];
+
+	for (int i = 0; i < n; i++) {
+		school[i] = new char[m];
+		visited[i] = new bool[m];
+		string str;  cin >> str;
+		for (int j = 0; j < m; j++) {
+			school[i][j] = str[j];
+			visited[i][j] = false;
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++)
+		{
+			if (school[i][j] == 'I')
+				BFS(i, j);
+		}
+	}
+
+	if (out == 0)
+		cout << "TT\n";
+	else
+		cout << out << "\n";
+
+	for (int i = 0; i < n; i++) {
+		delete[] school[i];
+		delete[] visited[i];
+	}
+	delete[] school;
+	delete[] visited;
+	return 0;
+}
