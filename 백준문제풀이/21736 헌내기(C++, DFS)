@@ -1,0 +1,56 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+char** school;
+bool** visited;
+int n, m, out = 0;
+
+void DFS(int x, int y) {
+	int dx[] = { -1,1,0,0 };   // 상하좌우
+	int dy[] = { 0,0,-1,1 };   // 상하좌우
+	visited[x][y] = true;
+
+	if (school[x][y] == 'P')
+		out++;
+	for (int i = 0; i < 4; i++)
+	{
+		int newx = x + dx[i];
+		int newy = y + dy[i];
+		if (newx >= 0 && newx < n && newy >= 0 && newy < m)
+		{
+			if (visited[newx][newy] == false && school[newx][newy] != 'X')
+				DFS(newx, newy);
+		}
+	}
+}
+
+int main() {
+	cin >> n >> m;
+	school = new char* [n];
+	visited = new bool* [n];
+
+	for (int i = 0; i < n; i++) {
+		school[i] = new char[m];
+		visited[i] = new bool[m];
+		string str;  cin >> str;
+		for (int j = 0; j < m; j++) {
+			school[i][j] = str[j];
+			visited[i][j] = false;
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++)
+		{
+			if (school[i][j] == 'I')
+				DFS(i, j);
+		}
+	}
+
+	if (out == 0)
+		cout << "TT\n";
+	else
+		cout << out << "\n";
+	return 0;
+}
