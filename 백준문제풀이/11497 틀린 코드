@@ -1,0 +1,14 @@
+for _ in range(int(input())):
+    size = int(input())
+    lst = [*map(int, input().split())]
+    lst.sort()
+    maximum = -100000
+    for i in range(1, size):
+        cha = 0
+        if i == size - 1:
+            cha = abs(lst[i] - lst[0])
+        else:
+            cha = abs(lst[i] - lst[i - 1])
+        if cha > maximum:
+            maximum = cha
+    print(maximum)
