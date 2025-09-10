@@ -1,0 +1,15 @@
+lst = []
+for _ in range(int(input())):
+    tmp, hap = [*map(int, input().split())], 0
+    if tmp[0] > tmp[1]:
+        hap += tmp[0]
+    else:
+        hap += tmp[1]
+    del tmp[0]
+    del tmp[0]
+    hap += max(tmp)
+    tmp.remove(max(tmp))
+    hap += max(tmp)
+    lst.append(hap)
+
+print(max(lst))
