@@ -1,0 +1,12 @@
+n = int(input())
+lst = list(map(int, input().split()))
+
+dp = [0] * n
+
+for i in range(n):
+    dp[i] = lst[i]  # 최소 자기 자신으로 시작
+    for j in range(i):
+        if lst[j] < lst[i]:
+            dp[i] = max(dp[i], dp[j] + lst[i])  # i번째 원소를 마지막으로 하는 증가 부분수열의 합
+
+print(max(dp))
