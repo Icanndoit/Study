@@ -1,0 +1,39 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int a, b, n, out = 0;
+    int* arr;
+    
+    cin >> a >> b;  // 현재 위치, 목적지
+    cin >> n;
+    arr = new int[n];
+    
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+    
+    while (a != b) {
+        int cha = abs(b - a);  // 목적지까지의 거리
+        int tmp = a;
+        for (int i = 0; i < n; i++) {
+            if (abs(b - arr[i]) < cha) {
+                a = arr[i];
+                cha = abs(b - arr[i]);
+            }
+        }
+        if (tmp == a) {
+            if (a < b)
+                a++;
+            else if (a > b)
+                a--;
+        }
+        out++;
+    }
+    
+    cout << out << endl;
+    
+    
+    delete[] arr;
+    return 0;
+}
