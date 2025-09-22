@@ -1,0 +1,48 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int f, s, g, u, d;
+bool* visited;
+
+void BFS() {
+    queue<pair<int, int>> q; // {현재 층, 버튼 누른 횟수}
+    q.push({s, 0});
+    visited[s] = true;
+    
+    while (!q.empty()) {
+        int cur = q.front().first;
+        int cnt = q.front().second;
+        q.pop();
+
+        if (cur == g) { // 목표 층 도착
+            cout << cnt << "\n";
+            return;
+        }
+
+        // 위로
+        int up = cur + u;
+        if (up <= f && !visited[up]) {
+            visited[up] = true;
+            q.push({up, cnt + 1});
+        }
+
+        // 아래로
+        int down = cur - d;
+        if (down >= 1 && !visited[down]) {
+            visited[down] = true;
+            q.push({down, cnt + 1});
+        }
+    }
+
+    cout << "use the stairs\n"; // 도달 불가
+}
+
+int main() {
+    cin >> f >> s >> g >> u >> d;
+    visited = new bool[f + 1]();
+    
+    BFS();
+    delete[] visited;
+    return 0;
+}
