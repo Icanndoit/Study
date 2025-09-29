@@ -4,19 +4,19 @@ num = []
 for _ in range(n):
     num.append(input())
 
-cnt = 3  # 뒤에서 3자리부터 시작
+cnt = 1
 while True:
-    seen = []
+    seen = []  # 지금까지 나온 뒤 cnt자리 학번을 저장
     duplicate = False
 
     for s in num:
-        part = s[-cnt:]
-        if part in seen:
+        part = s[-cnt:]  # 뒤에서 cnt자리
+        if part in seen:  # 이미 나온 적 있으면 중복
             duplicate = True
             break
         seen.append(part)
     
-    if not duplicate:
+    if not duplicate:  # 중복이 없으면 정답
         print(cnt)
         break
     
