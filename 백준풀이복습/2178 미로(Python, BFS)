@@ -1,0 +1,40 @@
+def BFS(x, y):
+    global visited
+    queue = [(x, y)]
+    visited[x][y] = 1  # 시작 위치 거리 = 1
+
+    dx = [-1, 1, 0, 0]  # ← 수정: 방향 오류 해결
+    dy = [0, 0, -1, 1]
+
+    while len(queue) != 0:
+        front = queue[0][0]
+        back = queue[0][1]
+        del queue[0]
+
+        # 도착하면 바로 리턴
+        if front == n - 1 and back == m - 1:
+            return visited[front][back]
+
+        for i in range(4):
+            newx = front + dx[i]
+            newy = back + dy[i]
+            if newx < 0 or newx >= n or newy < 0 or newy >= m:
+                continue
+            if maze[newx][newy] == 0:
+                continue
+            if visited[newx][newy] != 0:
+                continue
+            visited[newx][newy] = visited[front][back] + 1
+            queue.append((newx, newy))
+
+n, m = map(int, input().split())
+visited = [[0] * m for _ in range(n)]
+maze = [[0] * m for _ in range(n)]
+
+for i in range(n):
+    num = input()
+    for j in range(m):
+        maze[i][j] = int(num[j])
+
+# 시작점만 BFS 실행
+print(BFS(0, 0))
