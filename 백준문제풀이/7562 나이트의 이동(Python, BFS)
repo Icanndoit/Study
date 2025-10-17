@@ -1,0 +1,36 @@
+def BFS(x, y):
+    global visited, dist
+    queue = [(x, y)]
+
+    dx = [-2, -1, 1, 2, -2, -1, 1, 2]
+    dy = [-1, -2, -2, -1, 1, 2, 2, 1]
+    while len(queue) != 0:
+        x = queue[0][0]
+        y = queue[0][1]
+        del queue[0]
+
+        # 목적지 도달하면 그 자리의 dist 반환
+        if x == destinationx and y == destinationy:
+            return dist[x][y]
+
+        for i in range(8):
+            newx = x + dx[i]
+            newy = y + dy[i]
+            if newx >= 0 and newx < n and newy >= 0 and newy < n:
+                if not visited[newx][newy]:
+                    visited[newx][newy] = True
+                    dist[newx][newy] = dist[x][y] + 1  # 이동 거리 기록
+                    queue.append((newx, newy))
+    
+    return 0  # 도달 불가한 경우 (이 문제에서는 항상 도달 가능)
+
+for _ in range(int(input())):
+    n = int(input())
+    visited = [[False] * n for _ in range(n)]
+
+    # 거리 정보, 각 노드(좌표)까지 도달하는 데 필요한 최소 이동 횟수를 저장하는 배열
+    dist = [[0] * n for _ in range(n)]
+    nowx, nowy = map(int, input().split())   # 현위치
+    visited[nowx][nowy] = True
+    destinationx, destinationy = map(int, input().split())  # 목적지
+    print(BFS(nowx, nowy))
