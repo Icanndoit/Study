@@ -30,11 +30,11 @@ public class Main {
         for (int i = 0; i < n; i++) {
             if (list[i][0] != k)
             {
-                if (list[i][1] > list[idx][1])
+                if (list[i][1] > list[idx][1])  // 금
                     rank++;
-                else if (list[i][1] == list[idx][1] && list[i][2] > list[idx][2])
+                else if (list[i][1] == list[idx][1] && list[i][2] > list[idx][2])  // 은
                     rank++;
-                else if (list[i][1] == list[idx][1] && list[i][2] == list[idx][2] && list[i][3] > list[idx][3])
+                else if (list[i][1] == list[idx][1] && list[i][2] == list[idx][2] && list[i][3] > list[idx][3])  // 동
                     rank++;
             }
         }
