@@ -1,0 +1,63 @@
+package PRACTICE;
+import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Main {
+    static void DFS(int n, int v, boolean[] visited, int[][] graph) 
+    {
+        System.out.print(v + " ");
+        visited[v] = true;
+
+        for (int i = 1; i <= n; i++) {
+            if (graph[v][i] == 1 && !visited[i])
+                DFS(n, i, visited, graph);
+        }
+    }
+    static void BFS(int n, int v, boolean[] visited, int[][] graph) 
+    {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(v);
+        visited[v] = true;  // 큐에 넣을때 방문 체크
+
+        while (q.isEmpty() == false) {
+            v = q.poll();  // 큐의 첫 요소를 반환과 동시에 삭제
+            System.out.print(v + " ");
+            
+            for (int i = 1; i <= n; i++) 
+            {
+                if (graph[v][i] == 1 && visited[i] == false) {
+                    q.add(i);
+                    visited[i] = true;  // 큐에 넣을때 방문 체크
+                }
+            }
+        }
+
+    }
+    
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        int n = input.nextInt();  // 정점의 개수
+        int m = input.nextInt();  // 간선의 개수
+        int v = input.nextInt();  // 탐색을 시작할 정점의 번호
+
+        int[][] graph = new int[n + 1][n + 1];
+        boolean[] visited = new boolean[n + 1];
+
+        for (int i = 0; i < m; i++) {
+            int a = input.nextInt();
+            int b = input.nextInt();
+            if (a != b)
+                graph[a][b] = graph[b][a] = 1;
+        }
+
+        DFS(n, v, visited, graph);
+        System.out.println();
+        for (int i = 0; i <= n; i++)
+            visited[i] = false;
+
+        BFS(n, v, visited, graph);
+
+    }
+}
