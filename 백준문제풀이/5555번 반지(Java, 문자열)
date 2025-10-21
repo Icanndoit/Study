@@ -1,0 +1,27 @@
+package PRACTICE;
+import java.util.Scanner;
+
+public class Main {
+    static boolean compare(String ring, String str) {
+        // 반지를 두 번 이어붙여서 원형 구조 처리
+        String doubleRing = ring + ring;
+        return doubleRing.contains(str);
+    }
+    
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int total = 0;
+        
+        String str = input.nextLine();
+        int n = input.nextInt();
+        input.nextLine(); // 버퍼 비우기 (중요!)
+        
+        for (int i = 0; i < n; i++) {
+            String ring = input.nextLine();
+            if (compare(ring, str))
+                total++;
+        }
+        
+        System.out.println(total);
+    }
+}
