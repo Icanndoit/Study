@@ -31,12 +31,10 @@ public class Main
                     max_date = birth[i][2];
                     name_max = name[i];
                 }
-                else if (birth[i][1] == max_month)
+                else if (birth[i][1] == max_month && birth[i][2] <= max_date)
                 {
-                    if (birth[i][2] <= max_date) {
                         max_date = birth[i][2];
-                        name_max = name[i];
-                    }
+                        name_max = name[i];   
                 }
             }
 
@@ -54,13 +52,10 @@ public class Main
                     min_date = birth[i][2];
                     name_min = name[i];
                 }
-                else if (birth[i][1] == min_month) 
+                else if (birth[i][1] == min_month && birth[i][2] > min_date) 
                 {
-                    if (birth[i][2] > min_date)
-                    {
-                        min_date = birth[i][2];
-                        name_min = name[i];
-                    }
+                    min_date = birth[i][2];
+                    name_min = name[i];
                 }
             }
 
