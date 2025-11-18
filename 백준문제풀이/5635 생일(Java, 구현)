@@ -1,0 +1,79 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        input.nextLine();  // 첫 줄 엔터 제거
+
+        String name_max = "", name_min = "";
+        String[] name = new String[n];
+        int birth[][] = new int[n][3];  // 년, 월, 일
+
+        int max_year = 2011, min_year = 1989;  // 나이가 많은 사람의 해, 나이가 적은 사람의 해
+        int max_month = 13, max_date = 32, min_month = 0, min_date = 0;
+        
+        for (int i = 0; i < n; i++) {
+            String line = input.nextLine();
+            String[] arr = line.split(" ");
+            name[i] = arr[0];
+            birth[i][2] = Integer.parseInt(arr[1]); // 일
+            birth[i][1] = Integer.parseInt(arr[2]); // 월
+            birth[i][0] = Integer.parseInt(arr[3]); // 년
+
+            if (birth[i][0] == max_year) {
+                if (birth[i][1] < max_month)
+                {
+                    max_month = birth[i][1];
+                    max_date = birth[i][2];
+                    name_max = name[i];
+                }
+                else if (birth[i][1] == max_month)
+                {
+                    if (birth[i][2] <= max_date) {
+                        max_date = birth[i][2];
+                        name_max = name[i];
+                    }
+                }
+            }
+
+            else if (birth[i][0] < max_year) {
+                name_max = name[i];
+                max_year = birth[i][0];
+                max_month = birth[i][1];
+                max_date = birth[i][2];
+            }
+
+            if (birth[i][0] == min_year) {
+                if (birth[i][1] > min_month) 
+                {
+                    min_month = birth[i][1];
+                    min_date = birth[i][2];
+                    name_min = name[i];
+                }
+                else if (birth[i][1] == min_month) 
+                {
+                    if (birth[i][2] > min_date)
+                    {
+                        min_date = birth[i][2];
+                        name_min = name[i];
+                    }
+                }
+            }
+
+            else if (birth[i][0] > min_year) {
+                name_min = name[i];
+                min_year = birth[i][0];
+                min_month = birth[i][1];
+                min_date = birth[i][2];
+            }
+        }
+
+        System.out.println(name_min);
+        System.out.println(name_max);
+
+    }
+}
