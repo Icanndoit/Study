@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        long[] dist = new long[n - 1];  // 거리
+        long[] cost = new long[n];  // 각 지점당 비용
+        long total = 0;  // 총 비용
+        
+        for (int i = 0; i < n - 1; i++)
+            dist[i] = input.nextLong();
+        for (int i = 0; i < n; i++)
+            cost[i] = input.nextLong();
+        
+        int idx = 0;  // 현재 위치
+        while (idx < n - 1) {
+            long minCost = cost[idx];  // 현재 위치의 기름값
+            long distance = 0;  // 이동할 총 거리
+            
+            // 현재 위치보다 기름값이 싼 도시가 나올 때까지 거리 누적
+            while (idx < n - 1 && cost[idx] <= minCost) {
+                minCost = cost[idx];
+                distance += dist[idx];
+                idx++;
+            }
+            
+            total += minCost * distance;  // 최소 비용으로 거리만큼 주유
+        }
+        
+        System.out.println(total);        
+    }
+}
