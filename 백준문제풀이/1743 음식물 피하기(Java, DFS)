@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class Main 
+{
+    static int out = 0, max = 0;
+    static int n, m, k;
+    static boolean block[][], visited[][];
+
+    static void DFS(int x, int y) {
+        int dx[] = {-1, 1, 0, 0};  // 상하좌우
+        int dy[] = {0, 0, -1, 1};  // 상하좌우
+        visited[x][y] = true;
+        out++;
+
+        for (int i = 0; i < 4; i++)
+        {
+            int newx = x + dx[i];
+            int newy = y + dy[i];
+            if (newx < 0 || newx >= n || newy < 0 || newy >= m)
+                continue;
+            if (block[newx][newy] == false)
+                continue;
+            if (visited[newx][newy])
+                continue;
+            DFS(newx, newy);
+        }
+    }
+    public static void main(String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        // 세로 길이 N(1 ≤ N ≤ 100)과 가로 길이 M(1 ≤ M ≤ 100) 
+        // 그리고 음식물 쓰레기의 개수 K(1 ≤ K ≤ N×M)
+
+        n = input.nextInt();  // 행
+        m = input.nextInt();  // 열
+        k = input.nextInt();
+        
+        /*   K개의 줄에 음식물이 떨어진 좌표 (r, c)가 주어진다.
+        좌표 (r, c)의 r은 위에서부터, c는 왼쪽에서부터가 기준이다. 
+        입력으로 주어지는 좌표는 중복되지 않는다.  */
+
+        block = new boolean[n][m];   // 지나갈 수 있는 곳 or 없는곳 표시
+        visited = new boolean[n][m];  // 방문여부 표시
+        for (int i = 0; i < k; i++)
+        {
+            int r = input.nextInt();
+            int c = input.nextInt();
+
+            block[r - 1][c - 1] = true;
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                if (block[i][j] == true && !visited[i][j]) {
+                    DFS(i, j);
+                    if (out > max)
+                        max = out;
+                    out = 0;
+                }
+            }
+        }
+
+        System.out.println(max);
+    }
+}
