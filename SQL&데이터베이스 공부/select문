@@ -1,0 +1,6 @@
+-- select문 : 데이터를 가져온다.
+-- select * from customer;  customer에 대한 모든 정보를 가져온다.
+
+-- select customer_id from customer;
+-- customer에서 customer_id에 대한 정보를 가져온다.
+SELECT customer_id, customer_name FROM customer;
