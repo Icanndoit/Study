@@ -1,0 +1,4 @@
+select 'a' = 'A', 
+'a' = binary 'A',
+1 like 1,
+1 like 2;
