@@ -1,0 +1,3 @@
+-- where 을 써서 조건을 붙일 수 있다.
+select customer_id as 아이디, 
+membertype_id from customer where membertype_id >= 2;
