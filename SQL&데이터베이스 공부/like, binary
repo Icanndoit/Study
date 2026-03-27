@@ -1,4 +1,7 @@
 select 'a' = 'A', 
 'a' = binary 'A',
 1 like 1,
-1 like 2;
+1 like 2,
+"200" like '200%',
+"200" like '10%',
+'300' like '30';
