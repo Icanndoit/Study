@@ -1,0 +1,4 @@
+# Write your MySQL query statement below
+-- null은 = 이나 != 대신 is null 또는 is not null을 사용한다.
+select name from customer where referee_id != 2 or
+referee_id is null;
