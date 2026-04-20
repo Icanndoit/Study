@@ -1,0 +1,25 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] arr, int[] delete_list) {
+        List<Integer> answer = new ArrayList<>();
+
+        for (int num : arr) {
+            // delete_list에 없으면 추가
+            if (!contains(delete_list, num)) {
+                answer.add(num);
+            }
+        }
+
+        // List → 배열 변환
+        return answer.stream().mapToInt(i -> i).toArray();
+    }
+
+    // contains 직접 구현
+    private boolean contains(int[] arr, int target) {
+        for (int x : arr) {
+            if (x == target) return true;
+        }
+        return false;
+    }
+}
