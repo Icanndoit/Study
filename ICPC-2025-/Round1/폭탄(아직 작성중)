@@ -1,0 +1,28 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+
+	for (int i = 1; i <= n; i++) {
+		int L, N;  cin >> N >> L;
+		int* x = new int[L + 1]();
+		for (int j = 0; j < N; j++) {
+			int index;  cin >> index;
+			x[index] = 1;
+		}
+		int minimum = 0, idx = 0;   // 최소값, 철수가 위치한 좌표
+		sort(x, x + (L + 1));
+		while (N != 0) {
+			
+		}
+
+		cout << "Case #" << i << endl;
+		cout << minimum << endl;
+		delete[]x;
+	}
+
+	return 0;
+}
